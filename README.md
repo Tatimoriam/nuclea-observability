@@ -1,6 +1,6 @@
 ## Projeto - Observability
 
-Projeto  feito para o módulo de Observability do curso [https://ada.tech/sou-aluno/programas/nuclea-ser-mais-tech](Ser+Tech) ministrado pela [https://www.linkedin.com/school/adatechbr/](Ada.Tech) em parceria com a [https://www.linkedin.com/company/nucleabr/](Núclea).
+Projeto  feito para o módulo de Observability do curso [Ser+Tech](https://ada.tech/sou-aluno/programas/nuclea-ser-mais-tech) ministrado pela [Ada.Tech](https://www.linkedin.com/school/adatechbr/) em parceria com a [Núclea](https://www.linkedin.com/company/nucleabr/).
 
 ## Equipe
 

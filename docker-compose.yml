@@ -47,18 +47,6 @@ services:
     volumes:
       - ./alertmanager:/etc/alertmanager
       - alertmanager-data:/data
-  
-  applista:
-    image: applista:01
-    ports:
-        - 80:80
-    networks:
-        - backend
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://{IP_ADDRESS_GRAYLOG}:12201"
-        tag: nodedeploy
 
   mongo:
     image: mongo:3
@@ -93,6 +81,17 @@ services:
     networks:
       - backend
 
+  nginx:
+    image: nginx
+    ports:
+        - 80:80
+    networks:
+        - backend
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "tcp://{YOUR_GRAYLOG_IP}:12201"
+        tag: nginxdeploy
 
 
 volumes:

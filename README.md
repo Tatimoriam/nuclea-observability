@@ -17,7 +17,7 @@ Realizar a criação e configuração do ambiente de Logs utilizando as ferramen
 ## O Projeto
 
 Este projeto foi feito utilizando uma Máquina Virtual com Ubuntu Server 22.04.
-A VM (Máquina Virtual) foi configurada a rede como modo Bridge.
+A VM (Máquina Virtual) foi configurada com rede em modo Bridge.
 Primeiramente ao criar a VM  fizemos a instalação das ferramentas necessárias:
 
 ```
@@ -30,5 +30,21 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose –-version
 ```
 
-Após termos o docker instalado e funcional, nós copiamos o conteudo da pasta "app-lista" disponível neste repositório e rodamos o documento de Dockerfile disponível também neste repositório para criar uma imagem que contivesse a aplicação que utilizariamos para este projeto.
+Após termos o docker instalado e funcional, agora iremos copiar o conteúdo deste repositório para a máquina virtual.
+
+```
+sudo app install git
+git clone https://github.com/Tatimoriam/nuclea-observability.git
+cp -r nuclea-observability/alertmanager/ .
+cp -r nuclea-observability/grafana/ .
+cp -r nuclea-observability/prometheus/ .
+cp -r nuclea-observability/docker-compose.yml .
+rm -rf nuclea-observability/
+```
+
+No arquivo docker-compose.yml alterar as informações de {YOUR_HOST_IP} para o IP do seu host e {YOUR_GRAYLOG_IP} para o IP do Graylog em rede.
+Depois rodar:
+```
+sudo docker-compose up -d
+```
 

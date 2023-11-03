@@ -1,14 +1,12 @@
-# A aplicação é em React, logo puxaremos uma imagem nodejs
-FROM node
+FROM node:10-alpine
 
-# Adicionando algumas labels para identificar a imagem
-LABEL description "Dockerfile para criar o exporter para o Prometheus"
+WORKDIR /usr/app
 
-# Adicionando o app-lista para a nossa imagem
-ADD https://github.com/Tatimoriam/nuclea-observability/app-lista .
-
-# Instalando as bibliotecas necessárias
+COPY package*.json ./
 RUN npm install
 
-# Executando a aplicação
-CMD npm start
+COPY . .
+
+EXPOSE 80
+
+CMD ["npm","start"]

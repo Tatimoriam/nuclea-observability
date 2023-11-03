@@ -1,0 +1,105 @@
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus:v2.46.0
+    ports:
+      - 9090:9090
+    networks:
+      - backend
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor
+    ports:
+      - 8080:8080
+    hostname: '{{.Node.ID}}'
+    networks:
+      - backend
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      mode: global
+    
+  grafana:
+    image: grafana/grafana:10.0.0
+    ports:
+      - 3000:3000
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+
+  alertmanager:
+    image: prom/alertmanager:v0.25.0
+    networks:
+      - backend
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+      - alertmanager-data:/data
+  
+  applista:
+    image: applista:01
+    ports:
+        - 80:80
+    networks:
+        - backend
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "tcp://{IP_ADDRESS_GRAYLOG}:12201"
+        tag: nodedeploy
+
+  mongo:
+    image: mongo:3
+    networks:
+        - backend
+
+  graylog:
+    image: graylog/graylog:4.0
+    hostname: graylog-server
+    depends_on:
+      - mongo
+      - elasticsearch
+    ports:
+      - "9000:9000"
+      - "12201:12201"
+      - "1514:1514"
+      - "1514:1514/udp"
+    networks:
+      - backend
+    restart: always
+    links:
+      - mongo
+      - elasticsearch
+    environment:
+      - GRAYLOG_HTTP_EXTERNAL_URI={YOUR_HOST_IP}:9000/
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.5
+    environment:
+      - "http.host=0.0.0.0"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    networks:
+      - backend
+
+
+
+volumes:
+  prometheus-data:
+  grafana-data:
+  alertmanager-data:
+
+networks:
+  frontend:
+  backend:

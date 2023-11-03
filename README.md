@@ -16,6 +16,8 @@ Realizar a criação e configuração do ambiente de Logs utilizando as ferramen
 
 ## O Projeto
 
+### Construindo a Infraestrutura
+
 Este projeto foi feito utilizando uma Máquina Virtual com Ubuntu Server 22.04.
 A VM (Máquina Virtual) foi configurada com rede em modo Bridge.
 Primeiramente ao criar a VM  fizemos a instalação das ferramentas necessárias:
@@ -45,6 +47,23 @@ rm -rf nuclea-observability/
 No arquivo docker-compose.yml alterar as informações de {YOUR_HOST_IP} para o IP do seu host e {YOUR_GRAYLOG_IP} para o IP do Graylog em rede.
 Depois rodar:
 ```
+sudo sysctl -w vm.max_map_count=262144;
 sudo docker-compose up -d
 ```
 
+Para capturar o IP do Graylog para subir o nginx:
+```
+docker inspect graylog | grep IPAddress
+```
+
+Mesmo assim o container do nginx não irá subir, é necessário criar o input no graylog (System -> Input -> GELF TCP) e depois utilizar o comando:
+```
+sudo docker-compose up -d
+```
+novamente.
+![Containers rodando](containers.png)
+
+### Configurações 
+- dashboard grafana
+- dashboard graylog
+- alertmanager

@@ -41,10 +41,17 @@ cp -r nuclea-observability/alertmanager/ .
 cp -r nuclea-observability/grafana/ .
 cp -r nuclea-observability/prometheus/ .
 cp -r nuclea-observability/docker-compose.yml .
+cp -r nuclea-observability/applista .
 rm -rf nuclea-observability/
 ```
 
-No arquivo docker-compose.yml alterar as informações de {YOUR_HOST_IP} para o IP do seu host e {YOUR_GRAYLOG_IP} para o IP do Graylog em rede.
+Primeiramente precisamos acessar a pasta do applista e criar a imagem
+```
+cd applista
+sudo docker build -f Dockerfile . -t applista:01
+```
+
+Depois no arquivo docker-compose.yml alterar as informações de {YOUR_HOST_IP} para o IP do seu host e {YOUR_GRAYLOG_IP} para o IP do Graylog em rede.
 Depois rodar:
 ```
 sudo sysctl -w vm.max_map_count=262144;

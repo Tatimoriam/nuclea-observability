@@ -81,8 +81,8 @@ services:
     networks:
       - backend
 
-  nginx:
-    image: nginx
+  applista:
+    image: applista:01
     ports:
         - 80:80
     networks:
@@ -92,7 +92,7 @@ services:
       driver: gelf
       options:
         gelf-address: "tcp://{YOUR_GRAYLOG_IP}:12201"
-        tag: nginxdeploy
+        tag: applistadeploy
 
 
 volumes:

@@ -87,6 +87,7 @@ services:
         - 80:80
     networks:
         - backend
+        - frontend
     logging:
       driver: gelf
       options:

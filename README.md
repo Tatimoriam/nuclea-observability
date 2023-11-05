@@ -35,7 +35,7 @@ docker-compose –-version
 Após termos o docker instalado e funcional, agora iremos copiar o conteúdo deste repositório para a máquina virtual.
 
 ```
-sudo app install git
+sudo apt install git
 git clone https://github.com/Tatimoriam/nuclea-observability.git
 cp -r nuclea-observability/alertmanager/ .
 cp -r nuclea-observability/grafana/ .

@@ -71,7 +71,7 @@ services:
       - mongo
       - elasticsearch
     environment:
-      - GRAYLOG_HTTP_EXTERNAL_URI={YOUR_HOST_IP}:9000/
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://{YOUR_HOST_IP}:9000/
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.5

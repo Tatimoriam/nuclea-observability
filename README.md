@@ -1,4 +1,4 @@
-## Projeto - Observability
+# Projeto - Observability
 
 Projeto  feito para o módulo de Observability do curso [Ser+Tech](https://ada.tech/sou-aluno/programas/nuclea-ser-mais-tech) ministrado pela [Ada.Tech](https://www.linkedin.com/school/adatechbr/) em parceria com a [Núclea](https://www.linkedin.com/company/nucleabr/).
 
@@ -72,7 +72,7 @@ sudo docker-compose up -d
 
 ### Configurações 
 
-## Alertmanager
+#### Alertmanager
 
 O alertmanager foi configurado para enviar os alertas para um canal no discord.
 ```
@@ -89,6 +89,6 @@ No campo ```link do webhook discord``` trocar para o webhook do seu canal no dis
 
 ![Mensagem de Alerta](img/alertdiscord.png)
 
-## Graylog
+#### Graylog
 O Graylog está loggando todos os acessos feitos a aplicação na porta 80.
 ![Logs no Graylog](img/graylog.png)

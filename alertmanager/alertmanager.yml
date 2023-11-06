@@ -1,11 +1,7 @@
 route:
-  receiver: 'mail'
+  receiver: 'discord'
 
 receivers:
-  - name: 'mail'
-    email_configs:
-      - smarthost: 'smtp.gmail.com:587'
-        from: 'your_mail@gmail.com'
-        to: 'some_mail@gmail.com'
-        auth_username: '...'
-        auth_password: '...'
+  - name: 'discord'
+    discord_configs:
+    - webhook_url: <link do webhook discord>

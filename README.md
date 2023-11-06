@@ -68,9 +68,27 @@ Mesmo assim o container do nginx não irá subir, é necessário criar o input n
 sudo docker-compose up -d
 ```
 novamente.
+
 ![Containers rodando](containers.png)
 
 ### Configurações 
+
+## Alertmanager
+
+O alertmanager foi configurado para enviar os alertas para um canal no discord.
+```
+route:
+  receiver: 'discord'
+
+receivers:
+  - name: 'discord'
+    discord_configs:
+    - webhook_url: <link do webhook discord>
+```
+
+No campo ```link do webhook discord``` trocar para o webhook do seu canal no discord (editar canal -> integrações -> ver weebhooks -> selecionar o webhook criado -> copiar URL do webhook)
+![Mensagem de Alerta](alertdiscord.png)
+
+
 - dashboard grafana
 - dashboard graylog
-- alertmanager

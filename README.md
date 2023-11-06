@@ -94,5 +94,5 @@ O Graylog está loggando todos os acessos feitos a aplicação na porta 80.
 ![Logs no Graylog](img/graylog.png)
 
 #### Grafana
-O Dashboard do grafana se encontra no arquivo ```DashGrafana_Visão Geral-1699282768736.json```. Só importar a dashboard para o Grafana.
+O Dashboard do grafana se encontra no arquivo ```DashGrafana_Visão Geral.json```. Só importar a dashboard para o Grafana.
 ![Dashboard Grafana](img/grafana.png)

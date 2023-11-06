@@ -67,9 +67,8 @@ Mesmo assim o container do nginx não irá subir, é necessário criar o input n
 ```
 sudo docker-compose up -d
 ```
-novamente.
 
-![Containers rodando](containers.png)
+![Containers rodando](img/containers.png)
 
 ### Configurações 
 
@@ -87,8 +86,9 @@ receivers:
 ```
 
 No campo ```link do webhook discord``` trocar para o webhook do seu canal no discord (editar canal -> integrações -> ver weebhooks -> selecionar o webhook criado -> copiar URL do webhook)
-![Mensagem de Alerta](alertdiscord.png)
 
+![Mensagem de Alerta](img/alertdiscord.png)
 
-- dashboard grafana
-- dashboard graylog
+## Graylog
+O Graylog está loggando todos os acessos feitos a aplicação na porta 80.
+![Logs no Graylog](img/graylog.png)
